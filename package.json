@@ -1,0 +1,38 @@
+{
+  "name": "basic_temp",
+  "version": "1.0.0",
+  "description": "basic_express",
+  "main": "index.js",
+  "bin": "dist/bundle.js",
+  "scripts": {
+    "start": "node ./out/index.js",
+    "dev": "nodemon ./out/index.js ",
+    "build": "node esbuild.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "pkg . --target node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path dist/build"
+  },
+  "author": "JC",
+  "license": "MIT",
+  "dependencies": {
+    "basic_temp": "file:",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
+    "esbuild": "^0.24.0",
+    "nodemon": "^3.1.7",
+    "pkg": "^5.8.1",
+    "typescript": "^5.7.2"
+  },
+  "pkg": {
+    "assets": [
+      "dist/public/**/*"
+    ],
+    "scripts": [
+      "dist/**/*.js"
+    ]
+  }
+}
