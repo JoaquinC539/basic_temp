@@ -32,6 +32,10 @@ const transferFiles=(from,to)=>{
     const dirPath=path.join(__dirname,to)
     const files=fs.readdirSync(sp)    
     files.forEach((file)=>{
+        const fsp=file.split(".")
+        if(fsp[fsp.length-1]==="ts" ){
+            return;
+        } 
         const spf=path.join(sp,file);
         const dpf=path.join(dirPath,file)
         if(!fs.lstatSync(spf).isDirectory()){
@@ -45,7 +49,7 @@ const transferFiles=(from,to)=>{
 
 esbuild.build({
     entryPoints:["out/index.js"],
-    outfile:'dist/bundle.js',
+    outfile:'dist/app/bundle.js',
     bundle:true,
     platform:"node",
     target:"node18",
@@ -53,5 +57,6 @@ esbuild.build({
     minify:false
 }).then(()=>{
     // copyFolderSync("public","dist/public");
-    transferFiles("./src/public","./dist/public")
+    // transferFiles("./src/public","./dist/public")
+    transferFiles("./src","./dist")
 }).catch(()=>process.exit(1))

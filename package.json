@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "basic_express",
   "main": "index.js",
-  "bin": "dist/bundle.js",
+  "bin": "dist/app/bundle.js",
   "scripts": {
     "start": "node ./out/index.js",
-    "dev": "nodemon ./out/index.js ",
+    "dev2": "nodemon ./out/index.js ",
+    "dev": "nodemon --exec \"node scripts.js && node ./out/index.js\" ",
     "build": "node esbuild.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "pkg . --target node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path dist/build"
@@ -29,7 +30,8 @@
   },
   "pkg": {
     "assets": [
-      "dist/public/**/*"
+      "dist/public/**/*",
+      "dist/pages/**/*"
     ],
     "scripts": [
       "dist/**/*.js"
